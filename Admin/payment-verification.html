@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="admin-dashboard">
+        <div id="admin-sidebar">
+            <h2>Admin Dashboard</h2>
+            <ul>
+                <li><a href="adminauth.html" >Login and Authentication</a></li>
+                <li><a href="payment-verification.html" class="active" class="protected">Payment Verification</a></li>
+                <li><a href="profile-featuring.html" class="protected">Profile Featuring</a></li>
+                <li><a href="tuition-management.html" class="protected">Tuition Management</a></li>
+                <li><a href="teacher-management.html" class="protected">Teacher Management</a></li>
+                <li><a href="guardian-reviews-management.html" class="protected">Guardian Reviews Management</a></li>
+                <li><a href="dashboard-statistics.html" class="protected">Dashboard Statistics</a></li>
+                <li><a href="chat-management.html" class="protected">Chat Management</a></li>
+                <li><a href="contact-support.html" class="protected">Contact and Support</a></li>
+                <li><a href="security-access.html" class="protected">Security and User Access</a></li>
+            </ul>
+        </div>
+        <div id="admin-content">
+            <button id="toggle-sidebar">☰</button>
+            <h2>Pending Payments List</h2>
+            <div class="filter-search">
+                <label for="status">Filter by Status:</label>
+                <select id="status">
+                    <option value="">All</option>
+                    <option value="pending">Pending</option>
+                    <option value="verified">Verified</option>
+                    <option value="declined">Declined</option>
+                </select>
+                <input type="text" id="search" placeholder="Search by User ID/Name/Transaction ID">
+                <button id="search-button">Search</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>User ID</th>
+                        <th>Amount</th>
+                        <th>Transaction ID</th>
+                        <th>Payment Number</th>
+                        <th>Submission Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Payment rows will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Tuition Website</p>
+    </footer>
+    <script>
+        // Check if the user is logged in
+        document.addEventListener("DOMContentLoaded", () => {
+            const isLoggedIn = localStorage.getItem("loggedIn");
+
+            // Bypass login check if in development mode
+            const isDevelopment = window.location.href.includes("127.0.0.1:3000"); // Check if the URL matches localhost
+
+            if (!isDevelopment && !isLoggedIn) {
+                // If not logged in and not in development mode, redirect to login page
+                window.location.href = "adminauth.html"; // Redirect to login page
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
